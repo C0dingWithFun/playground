@@ -1,13 +1,17 @@
+/* eslint-disable */
 import dotenv from 'dotenv';
+import path from 'path';
 
-import { __port__ } from './constants';
-import app from './app';
-
-const dotenvConfig = dotenv.config();
+const dotenvConfig = dotenv.config({
+  path: path.resolve(process.cwd(), '.env'),
+});
 if (dotenvConfig.error) {
   throw dotenvConfig.error;
 }
 
-app.listen(__port__, () => {
-  console.info(`🎉 Application has started sucessfully at http://localhost:${__port__}`);
+import { __PORT__ } from './constants';
+import app from './app';
+
+app.listen(__PORT__, () => {
+  console.info(`🎉 Application has started sucessfully at http://localhost:${__PORT__}`);
 });

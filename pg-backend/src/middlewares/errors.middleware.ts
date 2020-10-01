@@ -1,5 +1,5 @@
 import { ErrorRequestHandler, RequestHandler } from 'express';
-import { __prod__ } from '../constants';
+import { __PROD__ } from '../constants';
 
 export const notFoundHandler: RequestHandler = (req, res, next) => {
   res.status(404);
@@ -13,6 +13,6 @@ export const errorHandler: ErrorRequestHandler = (err, req, res) => {
     errorCode: statusCode,
     message: err.message,
     requestURL: req.originalUrl,
-    stack: __prod__ ? '' : err.stack,
+    stack: __PROD__ ? '' : err.stack,
   });
 };

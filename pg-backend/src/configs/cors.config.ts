@@ -1,9 +1,9 @@
 import { CorsOptions } from 'cors';
 
-import { __prod__ } from '../constants';
+import { __PROD__ } from '../constants';
 
 const corsOptions: CorsOptions = {
-  origin: __prod__
+  origin: __PROD__
     ? ['http://localhost:4040']
     : ['http://localhost:4000'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
