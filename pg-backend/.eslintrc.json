@@ -16,6 +16,7 @@
     ],
     "rules": {
         "no-underscore-dangle": 0,
+        "no-shadow": "off",
         "import/extensions": [
             "error",
             "ignorePackages",

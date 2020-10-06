@@ -5,7 +5,7 @@ import cors from 'cors';
 import { __PROD__ } from './constants';
 import corsOptions from './configs/cors.config';
 import { errorHandler, notFoundHandler } from './middlewares/errors.middleware';
-import apiRouter from './api/index.router';
+import apiRouter from './api/api.router';
 
 const app: Express = express();
 

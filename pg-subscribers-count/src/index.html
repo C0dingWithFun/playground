@@ -6,11 +6,14 @@
   <title>Counter</title>
 </head>
 <body>
-  <h1 id="count"></h1>
+  <h1 id="count" style="
+    color: white;
+    font-family: sans-serif;
+  "></h1>
 
   <script>
     function getSubscribers() {
-      fetch('http://localhost:5000/api/v1/youtube/subscribers')
+      fetch('http://localhost:9000/api/v1/youtube/subscribers')
         .then(res => res.json())
         .then((data) => {
           const subscribers = data.data.subscribers;
@@ -20,7 +23,7 @@
 
     setInterval(() => {
       getSubscribers();
-    }, 1000 * 60 * 5);
+    }, 1000 * 60 * 15);
 
     getSubscribers();
   </script>

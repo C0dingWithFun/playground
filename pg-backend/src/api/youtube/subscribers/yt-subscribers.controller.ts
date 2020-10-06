@@ -1,11 +1,7 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';  
 import { google } from 'googleapis';
-
-import { __YOUTUBE_API_KEY__, __YOUTUBE_CHANNEL_ID__ } from '../../constants';
-
-// function handleCache(data) {
-
-// }
+import redisClient from '../../../redis.db';
+import { ytServiceBaseConfig, YTServicePartsOptionEnum } from '../../../configs/ytService.config';
 
 /**
  * Controller for /api/v1/youtube/subscribers endpoint and returns current channel subscribers
@@ -15,29 +11,26 @@ import { __YOUTUBE_API_KEY__, __YOUTUBE_CHANNEL_ID__ } from '../../constants';
  */
 const ytSubscribersController = (req: Request, res: Response, next: NextFunction) => {
   const ytService = google.youtube('v3');
-  // Calling Google API
-  ytService.channels.list({
-    auth: __YOUTUBE_API_KEY__,
-    part: ['snippet', 'statistics'],
-    id: [__YOUTUBE_CHANNEL_ID__!],
-  }, (err, response) => {
-    // Handling the error case from response
+  const ytServiceOptions = {
+    ...ytServiceBaseConfig,
+    part: [YTServicePartsOptionEnum.STATISTICS],
+  };
+
+  ytService.channels.list(ytServiceOptions, (err, response) => {
     if (err) {
-      res.status(500);
       next(new Error(err.message));
       return;
     }
-    // Fetching subscribers from response
+
     const subscribers = response?.data.items![0]?.statistics?.subscriberCount;
-    const channelDetails = response?.data.items![0]?.snippet?.localized;
+
+    // Saving data to redis client for cache
+    redisClient.setex('yt-subscribers', 15 * 60, subscribers);
 
     res.status(200);
     res.json({
       message: 'Successfully fetched subscribers count',
-      data: {
-        subscribers,
-        channelDetails,
-      },
+      data: { subscribers },
       requestedURL: req.originalUrl,
     });
   });

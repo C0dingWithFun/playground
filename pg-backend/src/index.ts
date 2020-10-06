@@ -11,6 +11,7 @@ if (dotenvConfig.error) {
 
 import { __PORT__ } from './constants';
 import app from './app';
+import './redis.db';
 
 app.listen(__PORT__, () => {
   console.info(`🎉 Application has started sucessfully at http://localhost:${__PORT__}`);
