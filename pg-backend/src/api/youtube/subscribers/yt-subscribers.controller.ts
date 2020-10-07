@@ -1,7 +1,8 @@
-import { NextFunction, Request, Response } from 'express';  
+import { NextFunction, Request, Response } from 'express';
 import { google } from 'googleapis';
 import redisClient from '../../../redis.db';
 import { ytServiceBaseConfig, YTServicePartsOptionEnum } from '../../../configs/ytService.config';
+import { ERedisKeys } from '../../../constants';
 
 /**
  * Controller for /api/v1/youtube/subscribers endpoint and returns current channel subscribers
@@ -25,11 +26,11 @@ const ytSubscribersController = (req: Request, res: Response, next: NextFunction
     const subscribers = response?.data.items![0]?.statistics?.subscriberCount;
 
     // Saving data to redis client for cache
-    redisClient.setex('yt-subscribers', 15 * 60, subscribers);
+    redisClient.setex(ERedisKeys.YTSubscribers, 15 * 60, subscribers);
 
     res.status(200);
     res.json({
-      message: 'Successfully fetched subscribers count',
+      message: 'Successfully fetched YT subscribers count',
       data: { subscribers },
       requestedURL: req.originalUrl,
     });

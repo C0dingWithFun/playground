@@ -1,12 +1,13 @@
 import { ErrorRequestHandler, RequestHandler } from 'express';
 import { __PROD__ } from '../constants';
 
-export const notFoundHandler: RequestHandler = (req, res, next) => {
+export const notFoundHandler: RequestHandler = (_, res, next) => {
   res.status(404);
-  next(new Error(`The requested route '${req.originalUrl} does not exists.`));
+  next(new Error('The requested route does not exists.'));
 };
 
-export const errorHandler: ErrorRequestHandler = (err, req, res) => {
+// eslint-disable-next-line
+export const errorHandler: ErrorRequestHandler = (err, req, res, _next) => {
   const statusCode = res.statusCode !== 200 ? res.statusCode : 500;
   res.status(statusCode);
   return res.json({

@@ -13,7 +13,14 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan(__PROD__ ? 'common' : 'dev'));
 
-app.use('/api/v1/', apiRouter);
+app.get('/', (_, res) => {
+  res.status(200);
+  res.json({
+    message: 'Welcome to the API for the playground toolkit 🧰!',
+  });
+});
+
+app.use('/api/v1', apiRouter);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
