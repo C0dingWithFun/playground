@@ -19,6 +19,8 @@ describe('GET /api/v1/youtube/subscribers', () => {
       .toEqual('Successfully fetched YT subscribers count');
     expect(response.body.data.subscribers)
       .toBeDefined();
+    expect(response.body.data.isCached)
+      .not.toBeDefined();
   });
 
   it('should respond with cached subscribers', async () => {

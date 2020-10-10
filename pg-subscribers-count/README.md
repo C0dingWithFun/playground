@@ -11,5 +11,7 @@ const pgSubscriberCount = require('pg-subscriber-count');
 ```
 
 Subscribe Animation for front-end:
-https://pixabay.com/videos/subscribe-subscribe-button-34047/
+FINAL - https://gfycat.com/entireteemingitalianbrownbear-youtube-subscribe-yt
+
+FINAL 2 - https://pixabay.com/videos/subscribe-subscribe-button-34047/
 https://www.youtube.com/watch?v=Fps5vWgKdl0

@@ -1,6 +1,8 @@
 import express, { Express } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import compression from 'compression';
+import helmet from 'helmet';
 
 import { __PROD__ } from './constants';
 import corsOptions from './configs/cors.config';
@@ -12,6 +14,8 @@ const app: Express = express();
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan(__PROD__ ? 'common' : 'dev'));
+app.use(compression());
+app.use(helmet());
 
 app.get('/', (_, res) => {
   res.status(200);

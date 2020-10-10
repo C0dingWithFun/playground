@@ -10,11 +10,11 @@
 --- Stretched
 * [x] Move endpoints to youtube.router.ts file under youtube folder
   * [x] keep index.router file in api folder. It will import other routers like twitch, discord or patreon
-* [ ] Add helmet and compression library
-* [ ] Add response for `/` and for `/api/v1/`
-  * [ ] write test for this as well
-* [ ] Make sure you are testings for headers you set up in helmet
-  * [ ] Write some util function to test the basic settings
+* [x] Add helmet and compression library
+* [x] Add response for `/` and for `/api/v1/`
+  * [x] write test for this as well
+* [x] Make sure you are testings for headers you set up in helmet
+  * [x] Write some util function to test the basic settings
 * [ ] Set up some API Documentation with Swagger JSDoc and Swagger-ui-express
 
 -- Other
