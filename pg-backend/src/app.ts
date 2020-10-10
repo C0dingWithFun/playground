@@ -3,11 +3,14 @@ import morgan from 'morgan';
 import cors from 'cors';
 import compression from 'compression';
 import helmet from 'helmet';
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUI from 'swagger-ui-express';
 
 import { __PROD__ } from './constants';
 import corsOptions from './configs/cors.config';
 import { errorHandler, notFoundHandler } from './middlewares/errors.middleware';
 import apiRouter from './api/api.router';
+import { swaggerJSDocConfig } from './configs/swagger-jsdoc.config';
 
 const app: Express = express();
 
@@ -25,6 +28,10 @@ app.get('/', (_, res) => {
 });
 
 app.use('/api/v1', apiRouter);
+
+const swaggerSpecs = swaggerJSDoc(swaggerJSDocConfig);
+app.use('/docs', swaggerUI.serve);
+app.get('/docs', swaggerUI.setup(swaggerSpecs, { explorer: true }));
 
 app.use(notFoundHandler);
 app.use(errorHandler);

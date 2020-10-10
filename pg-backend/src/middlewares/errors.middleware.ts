@@ -8,7 +8,7 @@ export const notFoundHandler: RequestHandler = (_, res, next) => {
 
 // eslint-disable-next-line
 export const errorHandler: ErrorRequestHandler = (err, req, res, _next) => {
-  const statusCode = res.statusCode !== 200 ? res.statusCode : 500;
+  const statusCode = res.statusCode !== 200 ? Number(res.statusCode) : 500;
   res.status(statusCode);
   return res.json({
     errorCode: statusCode,
