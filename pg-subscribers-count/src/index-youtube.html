@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Subscribers Counter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/youtube-styles.css">
+</head>
+<body>
+
+  <div id="main">
+    <div class="container">
+      <div class="icon">
+        <img src="./assets/youtube-logo.svg" alt="YouTube Logo Icon">
+      </div>
+      <div class="text">
+        <p id="count"></p>
+        <p id="subscribe">SUBSCRIBE!</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const countElement = document.getElementById('count');
+    const subscribeElement = document.getElementById('subscribe');
+
+    function getSubscribers() {
+      fetch('http://localhost:9000/api/v1/youtube/subscribers')
+        .then(res => res.json())
+        .then((data) => {
+          const subscribers = data.data.subscribers;
+          countElement.innerText = subscribers;
+        });
+    }
+
+    setInterval(() => {
+      if(!(countElement.classList.contains('fade-in') ||
+          countElement.classList.contains('fade-out'))) {
+            countElement.classList.add('fade-in');
+          }
+      if (countElement.classList.contains('fade-in')) {
+        countElement.classList.remove('fade-in');
+        countElement.classList.add('fade-out');
+        subscribeElement.classList.remove('fade-out');
+        subscribeElement.classList.add('fade-in');
+      } else if (countElement.classList.contains('fade-out')) {
+        countElement.classList.remove('fade-out');
+        countElement.classList.add('fade-in');
+        subscribeElement.classList.remove('fade-in');
+        subscribeElement.classList.add('fade-out');
+      }
+      getSubscribers();
+      // change fade-in to fade-out for both elements
+    // }, 1000 * 60 * 15);
+    }, 1000 * 10);
+
+    getSubscribers();
+  </script>
+</body>
+</html>

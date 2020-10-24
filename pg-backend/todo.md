@@ -16,7 +16,8 @@
 * [x] Make sure you are testings for headers you set up in helmet
   * [x] Write some util function to test the basic settings
 * [x] Set up some API Documentation with Swagger JSDoc and Swagger-ui-express
-  * [ ] Use Resposne schema feature
+  * [x] Use Resposne schema feature
+  * [ ] npm command to generate docs
 
 -- Other
 * [ ] Setup Docker as well

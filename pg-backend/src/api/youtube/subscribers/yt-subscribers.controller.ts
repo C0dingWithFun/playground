@@ -31,7 +31,7 @@ const ytSubscribersController = (req: Request, res: Response, next: NextFunction
     res.status(200);
     res.json({
       message: 'Successfully fetched YT subscribers count',
-      data: { subscribers },
+      data: { subscribers, isCached: false },
       requestedURL: req.originalUrl,
     });
   });

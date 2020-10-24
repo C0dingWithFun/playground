@@ -15,6 +15,8 @@ const youtubeRouter = Router();
  *      responses:
  *        "200":
  *          description: Response has latest subscribers count for the YouTube Channel
+ *        "500":
+ *          description: Internal Server Error. Look at the stack for more information
  */
 youtubeRouter.get('/subscribers', ytSubsCacheMiddleware, ytSubscribersController);
 
