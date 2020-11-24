@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Collection of the services and websites I have created for Coding With Fun Community",
   "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "./*"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "lerna run dev --stream",
