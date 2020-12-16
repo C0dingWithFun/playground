@@ -7,8 +7,7 @@
   "license": "ISC",
   "main": "src/index.ts",
   "directories": {
-    "src": "src",
-    "test": "__tests__"
+    "src": "src"
   },
   "files": [
     "src"
@@ -20,7 +19,7 @@
   "scripts": {
     "test": "jest --setupFiles dotenv/config",
     "start": "tsc src/index.ts && node dist/index.js",
-    "dev": "nodemon --watch src/ -e ts --exec \"ts-node src/index.ts\""
+    "dev": "nodemon"
   },
   "bugs": {
     "url": "https://github.com/C0dingWithFun/playground/issues"

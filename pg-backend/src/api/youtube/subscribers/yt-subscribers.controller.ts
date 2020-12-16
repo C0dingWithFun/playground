@@ -1,7 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 import { google } from 'googleapis';
 import redisClient from '../../../redis.db';
-import { ytServiceBaseConfig, YTServicePartsOptionEnum } from '../../../configs/ytService.config';
+import {
+  ytServiceBaseConfig,
+  YTServicePartsOptionEnum,
+} from '../../../configs/ytService.config';
 import { ERedisKeys } from '../../../constants';
 
 /**
@@ -10,7 +13,11 @@ import { ERedisKeys } from '../../../constants';
  * @param {Express.Response} res Express Response object
  * @param {NextFunction} next Express Next Function
  */
-const ytSubscribersController = (req: Request, res: Response, next: NextFunction) => {
+const ytSubscribersController = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const ytService = google.youtube('v3');
   const ytServiceOptions = {
     ...ytServiceBaseConfig,

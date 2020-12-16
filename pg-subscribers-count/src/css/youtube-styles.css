@@ -29,7 +29,8 @@
   opacity: 0;
 }
 
-.text #count, .text #subscribe {
+.text #count,
+.text #subscribe {
   position: absolute;
   top: 0;
   left: 0;
