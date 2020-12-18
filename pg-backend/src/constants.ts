@@ -10,4 +10,5 @@ export const __TWITCH_CLIENT_SECRET__ = process.env.TWITCH_CLIENT_SECRET?.toStri
 
 export enum ERedisKeys {
   YTSubscribers = 'yt-subscribers',
+  TwitchStats = 'twitch-stats',
 }
